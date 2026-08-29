@@ -4,12 +4,15 @@ export type GroupParticipant = (Contact & {
     isSuperAdmin?: boolean;
     admin?: 'admin' | 'superadmin' | null;
 });
-export type ParticipantAction = 'add' | 'remove' | 'promote' | 'demote';
+export type ParticipantAction = 'add' | 'remove' | 'promote' | 'demote' | 'modify';
+export type RequestJoinAction = 'created' | 'revoked' | 'rejected';
+export type RequestJoinMethod = 'invite_link' | 'linked_group_join' | 'non_admin_add' | undefined;
 export interface GroupMetadata {
     id: string;
+    /** group uses 'lid' or 'pn' to send messages */
+    addressingMode: "pn" | "lid";
     owner: string | undefined;
     subject: string;
-    addressingMode: "pn" | "lid";
     /** group subject owner */
     subjectOwner?: string;
     /** group subject modification date */
